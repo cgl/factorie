@@ -268,7 +268,7 @@ object Classify {
       BinarySerializer.deserialize(cubbie, classifierFile)
       val classifier = cubbie.fetch
       val classifications = labels.map(l => classifier.classification(l.features.value))
-      for (cl <- labels) println(cl)
+      for (i <- 0 to classifications.length-1) println("instance=%s, assigned label=%s" format(labels(i).features.instanceName,LabelDomain(classifications(i).bestLabelIndex)))
       if (opts.writeInstances.wasInvoked) {
         val instancesFile = new File(opts.writeInstances.value)
         instancesFile.createNewFile()
